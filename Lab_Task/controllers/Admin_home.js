@@ -93,4 +93,74 @@ router.post('/Register', (req, res)=>{
 		}
 	});
 });
+
+router.get('/information', (req, res)=>{
+
+	userModel.getAllInformation(function(results){
+		res.render('Admin_home/information', {users: results});
+		//console.log('welcome');
+	});
+
+});
+
+router.get('/infoDelete/:id/:information', (req, res)=>{
+	var user = {
+		id:req.params.id,
+		information:req.params.information
+	 };
+
+	res.render('Admin_home/infoDelete',user);
+});
+
+router.post('/infoDelete/:id/:information', (req, res)=>{
+
+	userModel.deleteInfo(req.params.id, function(status){
+		if(status){
+			res.redirect('/Admin_home/information');
+		}else{
+			res.render('Admin_home/infoDelete');
+		}
+	});
+});
+
+router.get('/infoEdit/:id/:information', (req, res)=>{
+	var user = {
+		id:req.params.id,
+		information:req.params.information
+	 };
+
+	res.render('Admin_home/infoEdit',user);
+});
+
+router.post('/infoEdit/:id/:information', (req, res)=>{
+	var user = {
+		id:req.params.id,
+		information:req.body.information
+	 };
+
+	userModel.updateInfo(user, function(status){
+		if(status){
+			res.redirect('/Admin_home/information');
+		}else{
+			res.render('Admin_home/infoDelete');
+		}
+	});
+});
+
+router.get('/createInfo', (req, res)=>{
+	res.render('Admin_home/infoCreate');
+});
+router.post('/createInfo', (req, res)=>{
+	var user = {
+		information : req.body.information
+	}
+	userModel.insertInfo(user, function(status){
+		if(status){
+			res.redirect('/Admin_home/information');
+		}else{
+			res.redirect('/Admin_home/infoCreate');
+		}
+	});
+});
+
 module.exports=router;

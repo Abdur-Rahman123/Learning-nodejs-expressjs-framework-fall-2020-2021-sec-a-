@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Information List</title>
+</head>
+<body>
+	<h1> Information List</h1>
+
+	<a href="/home">Back</a> | 
+	<a href="/logout">logout</a> 
+	<br>
+
+	<table border="1">
+		<tr>
+			<td>infoId</td>
+			<td>information</td>
+			<td>Action</td>
+		</tr>
+
+		<% 
+			users.forEach( function(std){ %>
+			<tr>
+				<td><%= std.infoId %></td>
+				<td><%= std.information %></td>
+				<td>
+					<a href="/Admin_home/infoDelete/<%= std.infoId %>/<%= std.information %>">Delete</a> |
+					<a href="/Admin_home/infoEdit/<%= std.infoId %>/<%= std.information %>">Edit</a>
+				</td>
+			</tr>
+		<%
+			}); 
+		%>
+		
+	</table>
+  <a href="/Admin_home/createInfo">Create Information</a>
+</body>
+</html>

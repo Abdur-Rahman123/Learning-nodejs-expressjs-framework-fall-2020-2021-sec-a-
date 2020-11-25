@@ -43,5 +43,36 @@ module.exports= {
 		db.execute(sql,function(status){
 			callback(status);
 		});
-	}
+	},
+	getAllInformation: function(callback){
+		var sql = "SELECT * FROM `information` ";
+		db.getResults(sql, function(results){
+			callback(results);
+		});
+	},
+	deleteInfo: function(id, callback){
+		var sql = "DELETE FROM information WHERE infoId='"+id+"'";
+		console.log(sql);
+		db.execute(sql,function(status){
+			callback(status);
+		});
+	},
+	updateInfo: function(user, callback){
+		console.log(user);
+		var sql = "update information set information= '"+user.information+"' where infoId = '"+user.id+"'";
+		db.execute(sql, function(status){
+			if(status){
+				callback(true);
+			}else{
+				callback(false);
+			}
+		});
+	},
+	insertInfo: function(user, callback){
+		var sql = "INSERT INTO `information` (`infoId`, `information`) VALUES (NULL, '"+user.information+"')";
+		//console.log(sql);
+		db.execute(sql,function(status){
+			callback(status);
+		});
+	},
 };
