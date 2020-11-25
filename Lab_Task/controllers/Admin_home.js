@@ -3,8 +3,12 @@ const userModel = require.main.require('./models/userModel');
 const router 	= express.Router();
 
 router.get('*',  (req, res, next)=>{
-	
+	if(req.cookies['uname']!=null){
 		next();
+	}
+	else{
+		res.redirect('login');
+	}
 });
 
 router.get('/', (req, res)=>{
