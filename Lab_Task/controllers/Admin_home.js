@@ -107,18 +107,19 @@ router.get('/information', (req, res)=>{
 
 });
 
-router.get('/infoDelete/:id/:information', (req, res)=>{
+router.get('/infoDelete/:country/:general/:cost', (req, res)=>{
 	var user = {
-		id:req.params.id,
-		information:req.params.information
+		country:req.params.country,
+		general:req.params.general,
+		cost:req.params.cost
 	 };
 
 	res.render('Admin_home/infoDelete',user);
 });
 
-router.post('/infoDelete/:id/:information', (req, res)=>{
+router.post('/infoDelete/:country/:general/:cost', (req, res)=>{
 
-	userModel.deleteInfo(req.params.id, function(status){
+	userModel.deleteInfo(req.params.country, function(status){
 		if(status){
 			res.redirect('/Admin_home/information');
 		}else{
@@ -127,26 +128,27 @@ router.post('/infoDelete/:id/:information', (req, res)=>{
 	});
 });
 
-router.get('/infoEdit/:id/:information', (req, res)=>{
+router.get('/infoEdit/:country/:general/:cost', (req, res)=>{
 	var user = {
-		id:req.params.id,
-		information:req.params.information
+		general:req.params.general,
+		cost:req.params.cost
 	 };
 
 	res.render('Admin_home/infoEdit',user);
 });
 
-router.post('/infoEdit/:id/:information', (req, res)=>{
+router.post('/infoEdit/:country/:general/:cost', (req, res)=>{
 	var user = {
-		id:req.params.id,
-		information:req.body.information
+		country:req.params.country,
+		general:req.body.general,
+		cost:req.body.cost
 	 };
 
 	userModel.updateInfo(user, function(status){
 		if(status){
 			res.redirect('/Admin_home/information');
 		}else{
-			res.render('Admin_home/infoDelete');
+			res.render('Admin_home/infoEdit');
 		}
 	});
 });
@@ -156,7 +158,9 @@ router.get('/createInfo', (req, res)=>{
 });
 router.post('/createInfo', (req, res)=>{
 	var user = {
-		information : req.body.information
+		country:req.body.country,
+		general:req.body.general,
+		cost:req.body.cost
 	}
 	userModel.insertInfo(user, function(status){
 		if(status){

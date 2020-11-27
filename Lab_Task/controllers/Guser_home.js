@@ -28,4 +28,15 @@ router.post('/Register', (req, res)=>{
 		}
 	});
 });
+
+router.get('/post', (req, res)=>{
+
+	userModel.getAllInformation(function(results){
+		res.render('Guser_home/Public_post', {users: results});
+		//console.log('welcome');
+	});
+
+});
+
+
 module.exports=router;

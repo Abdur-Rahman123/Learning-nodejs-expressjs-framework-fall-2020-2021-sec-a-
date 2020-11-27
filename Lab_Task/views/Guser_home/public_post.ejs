@@ -15,7 +15,6 @@
 			<td>Country</td>
 			<td>General</td>
 			<td>Cost</td>
-			<td>Action</td>
 		</tr>
 
 		<% 
@@ -24,16 +23,11 @@
 				<td><%= std.country %></td>
 				<td><%= std.general %></td>
 				<td><%= std.cost %></td>
-				<td>
-					<a href="/Admin_home/infoDelete/<%= std.country %>/<%= std.general %>/<%= std.cost %>">Delete</a> |
-					<a href="/Admin_home/infoEdit/<%= std.country %>/<%= std.general %>/<%= std.cost %>">Edit</a>
-				</td>
 			</tr>
 		<%
 			}); 
 		%>
 		
 	</table>
-  <a href="/Admin_home/createInfo">Create Information</a>
 </body>
 </html>

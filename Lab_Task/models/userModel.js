@@ -45,13 +45,13 @@ module.exports= {
 		});
 	},
 	getAllInformation: function(callback){
-		var sql = "SELECT * FROM `information` ";
+		var sql = "SELECT * FROM `place` ";
 		db.getResults(sql, function(results){
 			callback(results);
 		});
 	},
 	deleteInfo: function(id, callback){
-		var sql = "DELETE FROM information WHERE infoId='"+id+"'";
+		var sql = "DELETE FROM place WHERE country='"+id+"'";
 		console.log(sql);
 		db.execute(sql,function(status){
 			callback(status);
@@ -59,7 +59,7 @@ module.exports= {
 	},
 	updateInfo: function(user, callback){
 		console.log(user);
-		var sql = "update information set information= '"+user.information+"' where infoId = '"+user.id+"'";
+		var sql = "update place set general= '"+user.general+"',cost='"+user.cost+"' where country = '"+user.country+"'";
 		db.execute(sql, function(status){
 			if(status){
 				callback(true);
@@ -69,7 +69,7 @@ module.exports= {
 		});
 	},
 	insertInfo: function(user, callback){
-		var sql = "INSERT INTO `information` (`infoId`, `information`) VALUES (NULL, '"+user.information+"')";
+		var sql = "INSERT INTO `place` (`country`, `general`,`cost`) VALUES ('"+user.country+"', '"+user.general+"','"+user.cost+"')";
 		//console.log(sql);
 		db.execute(sql,function(status){
 			callback(status);
