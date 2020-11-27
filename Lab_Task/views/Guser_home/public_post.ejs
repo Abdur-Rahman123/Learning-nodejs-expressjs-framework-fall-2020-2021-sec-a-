@@ -2,6 +2,8 @@
 <html>
 <head>
 	<title>Information List</title>
+	<script type = "text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script type="text/javascript" src = "/assets/js/main.js"></script>
 </head>
 <body>
 	<h1> Information List</h1>
@@ -10,7 +12,18 @@
 	<a href="/logout">logout</a> 
 	<br>
 
-	<table border="1">
+	<div>
+		<select id="searchby">
+			<option selected hidden>Searh By</option>
+			<option value="country">country</option>
+			<option value="general">general</option>
+			<option value="cost">cost</option>
+			
+		</select>
+        <input type="text" name="search" id="search" placeholder="Search Employee">
+    </div>
+
+	<table border="1"  id="table">
 		<tr>
 			<td>Country</td>
 			<td>General</td>

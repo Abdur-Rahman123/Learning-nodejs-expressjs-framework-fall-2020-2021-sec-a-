@@ -38,5 +38,18 @@ router.get('/post', (req, res)=>{
 
 });
 
+router.post('/search',(req,res)=>{
+	var user = {
+		search : req.body.search,
+		searchby: req.body.searchby
+	};
+	userModel.searchPlace(user, function(results){
+		if(results){
+			res.json({user:results});
+		}else{
+			res.json({user:'error'});
+		}
+	});
+});
 
 module.exports=router;

@@ -75,4 +75,14 @@ module.exports= {
 			callback(status);
 		});
 	},
+	searchPlace: function(user, callback){
+		var sql = "SELECT * FROM place WHERE "+user.searchby+" LIKE '%"+user.search+"%'";
+		db.getResults(sql, function(results){
+			if(results.length > 0){
+				callback(results);
+			}else{
+				callback(false);
+			}
+		});
+	}
 };
