@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Information List</title>
+	
+</head>
+<body>
+	<h1> Information List</h1>
+
+	<a href="/home">Back</a> | 
+	<a href="/logout">logout</a> 
+	<br>
+
+	<table border="1"  id="table">
+		<tr>
+			<td>wishlist1</td>
+			<td>wishlist2</td>
+			<td>wishlist3</td>
+		</tr>
+
+		<% 
+			users.forEach( function(std){ %>
+			<tr>
+				<td><%= std.wishlist1 %></td>
+				<td><%= std.wishlist2 %></td>
+				<td><%= std.wishlist3 %></td>
+			</tr>
+		<%
+			}); 
+		%>
+		
+	</table>
+</body>
+</html>

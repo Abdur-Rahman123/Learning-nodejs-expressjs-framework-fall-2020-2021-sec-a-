@@ -52,4 +52,14 @@ router.post('/search',(req,res)=>{
 	});
 });
 
+router.get('/checklist', (req, res)=>{
+
+	userModel.getAllCheckList(function(results){
+		res.render('Guser_home/checklist', {users: results});
+		//console.log('welcome');
+	});
+
+});
+
+
 module.exports=router;

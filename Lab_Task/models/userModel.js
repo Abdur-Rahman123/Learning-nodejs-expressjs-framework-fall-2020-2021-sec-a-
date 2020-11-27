@@ -84,5 +84,11 @@ module.exports= {
 				callback(false);
 			}
 		});
-	}
+	},
+	getAllCheckList: function(callback){
+		var sql = "SELECT * FROM `checklist` ";
+		db.getResults(sql, function(results){
+			callback(results);
+		});
+	},
 };
