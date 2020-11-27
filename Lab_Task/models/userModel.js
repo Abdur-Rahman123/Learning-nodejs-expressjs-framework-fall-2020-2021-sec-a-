@@ -91,4 +91,15 @@ module.exports= {
 			callback(results);
 		});
 	},
+	updateCheckList: function(user, callback){
+		console.log(user);
+		var sql = "update checklist set wishlist1= '"+user.wishlist1+"',wishlist2='"+user.wishlist2+"' ,wishlist3='"+user.wishlist3+"' where id = '"+user.id+"'";
+		db.execute(sql, function(status){
+			if(status){
+				callback(true);
+			}else{
+				callback(false);
+			}
+		});
+	},
 };

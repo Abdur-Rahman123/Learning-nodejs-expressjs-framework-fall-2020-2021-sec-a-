@@ -13,17 +13,23 @@
 
 	<table border="1"  id="table">
 		<tr>
+			<td>ID</td>
 			<td>wishlist1</td>
 			<td>wishlist2</td>
 			<td>wishlist3</td>
+			<td>Action</td>
 		</tr>
 
 		<% 
 			users.forEach( function(std){ %>
 			<tr>
+				<td><%=std.id %></td>
 				<td><%= std.wishlist1 %></td>
 				<td><%= std.wishlist2 %></td>
 				<td><%= std.wishlist3 %></td>
+				<td>
+					<a href="/Guser_home/editwish/<%= std.id %>/<%= std.wishlist1 %>/<%= std.wishlist2 %>/<%= std.wishlist3 %>">Edit</a>
+				</td>
 			</tr>
 		<%
 			}); 

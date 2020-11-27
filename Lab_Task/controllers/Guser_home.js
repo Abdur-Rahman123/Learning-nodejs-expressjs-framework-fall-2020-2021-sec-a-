@@ -61,5 +61,32 @@ router.get('/checklist', (req, res)=>{
 
 });
 
+router.get('/editwish/:id/:wishlist1/:wishlist2/:wishlist3', (req, res)=>{
+	var user = {
+	     wishlist1:req.params.wishlist1,
+		wishlist2:req.params.wishlist2,
+		wishlist3:req.params.wishlist3
+	 };
+
+	res.render('Guser_home/editwish',user);
+});
+
+router.post('/editwish/:id/:wishlist1/:wishlist2/:wishlist3', (req, res)=>{
+	var user = {
+		   id:req.params.id,
+	     wishlist1:req.body.wishlist1,
+		wishlist2:req.body.wishlist2,
+		wishlist3:req.body.wishlist3
+	 };
+
+	userModel.updateCheckList(user, function(status){
+		if(status){
+			res.redirect('/Guser_home');
+		}else{
+			res.render('Guser_home/editwish');
+		}
+	});
+});
+
 
 module.exports=router;
