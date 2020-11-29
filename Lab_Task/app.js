@@ -32,7 +32,7 @@ app.use('/home', home);
 
 //router
 app.get('/', (req, res)=>{
-	res.send('Welcome');
+	res.redirect('/login');
 });
 
 //server startup

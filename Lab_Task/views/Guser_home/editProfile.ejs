@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>User List</title>
+	<title>Edit Profile</title>
 </head>
 <body>
-	<h1> Userlist</h1>
+	<h1> Edit Profile</h1>
 
-	<a href="/Admin_home">Back</a> | 
+	<a href="/Guser_home">Back</a> | 
 	<a href="/logout">logout</a> 
 	<br>
 
 	<table border="1">
 		<tr>
-			<td>ID</td>
-			<td>Username</td>
-			<td>Password</td>
-			<td>Type</td>
+			<td>Id</td>
+			<td>username</td>
+			<td>password</td>
+			<td>type</td>
 			<td>Action</td>
 		</tr>
 
@@ -27,7 +27,7 @@
 				<td><%= std.password %></td>
 				<td><%= std.type %></td>
 				<td>
-					<a href="/Admin_home/delete/<%= std.id %>/<%= std.username %>/<%= std.password %>/<%= std.type %>">Delete</a>
+					<a href="/Guser_home/profileEdit/<%= std.id %>/<%= std.username %>/<%= std.password %>/<%= std.type %>">Edit</a>
 				</td>
 			</tr>
 		<%
@@ -35,6 +35,5 @@
 		%>
 		
 	</table>
-
 </body>
 </html>

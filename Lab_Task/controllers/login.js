@@ -14,15 +14,15 @@ router.post('/', (req, res)=>{
 	};
 
 	userModel.validate(user, function(status){
-		if(status == 0){
+		if(status == "admin"){
 			res.cookie('uname', req.body.username);
 			res.redirect('/Admin_home');
 		}
-		else if(status == 1){
+		else if(status == "scout"){
 			res.cookie('uname', req.body.username);
 			res.redirect('/Scout_home');
 		}
-		else if(status == 2){
+		else if(status == "general"){
 			res.cookie('uname', req.body.username);
 			res.redirect('/Guser_home');
 		}
@@ -30,6 +30,25 @@ router.post('/', (req, res)=>{
 			res.redirect('/login');
 		}
 	});
-}); 
+});
+
+router.get('/Register', (req, res)=>{
+	res.render('user/Gcreate');
+});
+
+router.post('/Register', (req, res)=>{
+	var user = {
+		username : req.body.username,
+		password : req.body.password,
+		type : req.body.type
+	}
+	userModel.insert(user, function(status){
+		if(status){
+			res.redirect('/login');
+		}else{
+			res.redirect('/Register');
+		}
+	});
+});
 
 module.exports = router;

@@ -88,5 +88,45 @@ router.post('/editwish/:id/:wishlist1/:wishlist2/:wishlist3', (req, res)=>{
 	});
 });
 
+router.get('/updateProfile', (req, res)=>{
+
+var user={
+	id:req.cookies['uname']
+}
+	userModel.getById(req.cookies['uname'],function(results){
+		res.render('Guser_home/editProfile', {users: results});
+		console.log('welcome');
+	});
+
+});
+
+router.get('/profileEdit/:id/:username/:password/:type', (req, res)=>{
+	var user = {
+		username:req.params.username,
+		password:req.params.password,
+		type:req.params.type
+	 };
+
+	res.render('Guser_home/profileEdit',user);
+});
+
+router.post('/profileEdit/:id/:username/:password/:type', (req, res)=>{
+	var user = {
+		id:req.params.id,
+		username:req.body.username,
+		password:req.body.password,
+		type:req.body.type
+	 };
+
+	userModel.updateProfile(user, function(status){
+		if(status){
+			res.redirect('/Guser_home');
+		}else{
+			res.render('Guser_home/profileEdit');
+		}
+	});
+});
+
+
 
 module.exports=router;

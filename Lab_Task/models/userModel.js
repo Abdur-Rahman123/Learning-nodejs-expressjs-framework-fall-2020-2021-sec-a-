@@ -10,10 +10,11 @@ module.exports= {
 		});
 	},
 	getById: function(id, callback){
-		var sql = "select * from users where id='"+id+"'";
+		var sql = "SELECT * from users WHERE username='"+id+"' ";
 		db.getResults(sql, function(results){
 			if(results.length >0 ){
-				callback(results[0]);
+				console.log('welcome3');
+				callback(results);
 			}
 		});
 	},
@@ -100,6 +101,13 @@ module.exports= {
 			}else{
 				callback(false);
 			}
+		});
+	},
+	updateProfile:function(user, callback){
+		var sql = "UPDATE users SET username='"+user.username+"',password='"+user.password+"',type='"+user.type+"' WHERE id = '"+user.id+"'";
+		console.log(sql);
+		db.execute(sql,function(status){
+			callback(status);
 		});
 	},
 };

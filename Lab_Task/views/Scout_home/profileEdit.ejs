@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Create User</title>
+	<title>Edit Profile</title>
 </head>
 <body>
 	<form method="post">
 		<fieldset>
-			<legend>Create General User</legend>
+			<legend>Edit profile</legend>
 			<table>
 				<tr>
-					<td>User Name</td>
-					<td><input type="text" name="username"></td>
+					<td>General</td>
+					<td><input type="text" name="username" value="<%=username%>"></td>
 				</tr>
 				<tr>
-					<td>Password</td>
-					<td><input type="password" name="password"></td>
+					<td>Cost</td>
+					<td><input type="password" name="password" value="<%=password%>"></td>
 				</tr>
 				<tr>
 					<td>Type</td>
-					<td><input type="text" name="type"></td>
+					<td><input type="text" name="type" value="<%=type%>"></td>
 				</tr>
 				<tr>
 					<td></td>
@@ -27,6 +27,5 @@
 			</table>
 		</fieldset>
 	</form>
-	<a href="/login">Back</a>
 </body>
 </html>

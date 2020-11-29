@@ -14,42 +14,7 @@ router.get('*',  (req, res, next)=>{
 router.get('/', (req, res)=>{
 	res.render('Admin_home/index', {name: req.cookies['uname']});
 });
-router.get('/Gcreate', (req, res)=>{
-	res.render('user/Gcreate');
-});
 
-router.post('/Gcreate', (req, res)=>{
-	var user = {
-		username : req.body.username,
-		password : req.body.password,
-		type : '2'
-	}
-	userModel.insert(user, function(status){
-		if(status){
-			res.redirect('/Admin_home/userlist');
-		}else{
-			res.redirect('/user/create');
-		}
-	});
-});
-router.get('/Screate', (req, res)=>{
-	res.render('user/Screate');
-});
-
-router.post('/Screate', (req, res)=>{
-	var user = {
-		username : req.body.username,
-		password : req.body.password,
-		type : '1'
-	}
-	userModel.insert(user, function(status){
-		if(status){
-			res.redirect('/Admin_home/userlist');
-		}else{
-			res.redirect('/user/create');
-		}
-	});
-});
 router.get('/userlist', (req, res)=>{
 
 	userModel.getAll(function(results){
@@ -170,5 +135,45 @@ router.post('/createInfo', (req, res)=>{
 		}
 	});
 });
+
+router.get('/updateProfile', (req, res)=>{
+
+var user={
+	id:req.cookies['uname']
+}
+	userModel.getById(req.cookies['uname'],function(results){
+		res.render('Admin_home/editProfile', {users: results});
+		console.log('welcome');
+	});
+
+});
+
+router.get('/profileEdit/:id/:username/:password/:type', (req, res)=>{
+	var user = {
+		username:req.params.username,
+		password:req.params.password,
+		type:req.params.type
+	 };
+
+	res.render('Admin_home/profileEdit',user);
+});
+
+router.post('/profileEdit/:id/:username/:password/:type', (req, res)=>{
+	var user = {
+		id:req.params.id,
+		username:req.body.username,
+		password:req.body.password,
+		type:req.body.type
+	 };
+
+	userModel.updateProfile(user, function(status){
+		if(status){
+			res.redirect('/Admin_home/userlist');
+		}else{
+			res.render('Admin_home/profileEdit');
+		}
+	});
+});
+
 
 module.exports=router;
