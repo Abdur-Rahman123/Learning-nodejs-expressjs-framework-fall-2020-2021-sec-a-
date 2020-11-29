@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>View Comments</title>
+</head>
+<body>
+	<h1> View comments</h1>
+
+	<a href="/Admin_home">Back</a> | 
+	<a href="/logout">logout</a> 
+	<br>
+
+	<table border="1">
+		<tr>
+			<td>Country</td>
+			<td>Comments</td>
+			<td>Action</td>
+		</tr>
+
+		<% 
+			users.forEach( function(std){ %>
+			<tr>
+				<td><%= std.country %></td>
+				<td><%= std.comment %></td>
+				<td>
+					<a href="/Admin_home/deleteComment/<%= std.country %>">Delete</a> 
+				</td>
+			</tr>
+		<%
+			}); 
+		%>
+		
+	</table>
+</body>
+</html>

@@ -67,4 +67,23 @@ router.post('/profileEdit/:id/:username/:password/:type', (req, res)=>{
 		}
 	});
 });
+
+router.get('/place', (req, res)=>{
+	res.render('Scout_home/infoCreate');
+});
+router.post('/place', (req, res)=>{
+	var user = {
+		country:req.body.country,
+		general:req.body.general,
+		cost:req.body.cost
+	}
+	userModel.insertInfo(user, function(status){
+		if(status){
+			res.redirect('/Scout_home');
+		}else{
+			res.redirect('/Scout_home/infoCreate');
+		}
+	});
+});
+
 module.exports=router;

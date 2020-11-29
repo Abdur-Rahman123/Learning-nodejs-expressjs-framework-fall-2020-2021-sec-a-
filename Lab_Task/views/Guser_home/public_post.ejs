@@ -28,6 +28,7 @@
 			<td>Country</td>
 			<td>General</td>
 			<td>Cost</td>
+			<td>Action</td>
 		</tr>
 
 		<% 
@@ -36,6 +37,9 @@
 				<td><%= std.country %></td>
 				<td><%= std.general %></td>
 				<td><%= std.cost %></td>
+				<td>
+					<a href="/Guser_home/comment/<%= std.country %>">Comment</a>
+				</td>
 			</tr>
 		<%
 			}); 

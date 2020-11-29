@@ -175,5 +175,34 @@ router.post('/profileEdit/:id/:username/:password/:type', (req, res)=>{
 	});
 });
 
+router.get('/viewComment', (req, res)=>{
+
+	userModel.getAllComment(function(results){
+		res.render('Admin_home/viewComment', {users: results});
+		//console.log('welcome');
+	});
+
+});
+
+router.get('/deleteComment/:country', (req, res)=>{
+	var user = {
+		country:req.params.country
+	 };
+
+	res.render('Admin_home/deleteComment',user);
+});
+
+
+router.post('/deleteComment/:country', (req, res)=>{
+
+	userModel.deleteComment(req.params.country, function(status){
+		if(status){
+			res.redirect('/Admin_home');
+		}else{
+			res.redirect('/Admin_home/deleteComment');
+		}
+	});
+});
+
 
 module.exports=router;

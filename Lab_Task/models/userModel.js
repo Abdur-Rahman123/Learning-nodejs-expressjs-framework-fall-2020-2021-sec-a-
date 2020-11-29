@@ -110,4 +110,24 @@ module.exports= {
 			callback(status);
 		});
 	},
+	insertComment: function(user, callback){
+		var sql = "INSERT INTO comment(country,comment) VALUES ('"+user.country+"','"+user.comment+"')";
+		//console.log(sql);
+		db.execute(sql,function(status){
+			callback(status);
+		});
+	},
+	getAllComment: function(callback){
+		var sql = "select * from comment";
+		db.getResults(sql, function(results){
+			callback(results);
+		});
+	},
+	deleteComment: function(id, callback){
+		var sql = "DELETE FROM comment WHERE country='"+id+"'";
+		console.log(sql);
+		db.execute(sql,function(status){
+			callback(status);
+		});
+	},
 };

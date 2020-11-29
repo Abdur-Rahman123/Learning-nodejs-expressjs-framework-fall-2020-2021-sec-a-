@@ -127,6 +127,22 @@ router.post('/profileEdit/:id/:username/:password/:type', (req, res)=>{
 	});
 });
 
+router.get('/comment/:country', (req, res)=>{
+	res.render('Guser_home/commentCreate');
+});
+router.post('/comment/:country', (req, res)=>{
+	var user = {
+		country:req.params.country,
+		comment:req.body.comment
+	}
+	userModel.insertComment(user, function(status){
+		if(status){
+			res.redirect('/Guser_home');
+		}else{
+			res.redirect('/Guser_home/commentCreate');
+		}
+	});
+});
 
 
 module.exports=router;

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 29, 2020 at 12:17 PM
+-- Generation Time: Nov 29, 2020 at 02:39 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.27
 
@@ -41,6 +41,24 @@ CREATE TABLE `checklist` (
 
 INSERT INTO `checklist` (`id`, `wishlist1`, `wishlist2`, `wishlist3`) VALUES
 (1, 'Banglade', 'Ind', 'Ne');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `comment`
+--
+
+CREATE TABLE `comment` (
+  `country` varchar(100) NOT NULL,
+  `comment` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `comment`
+--
+
+INSERT INTO `comment` (`country`, `comment`) VALUES
+('india', 'Nice ');
 
 -- --------------------------------------------------------
 
@@ -83,7 +101,9 @@ CREATE TABLE `place` (
 INSERT INTO `place` (`country`, `general`, `cost`) VALUES
 ('india', 'nice place for visite', 100),
 ('bangladesh', 'nice', 10),
-('nepal', 'goss', 30);
+('nepal', 'goss', 30),
+('usa', 'nice', 100),
+('maxico', 'nidc', 10);
 
 -- --------------------------------------------------------
 
@@ -103,7 +123,6 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `type`) VALUES
-(1, 'rahim', '123', 'admin'),
 (2, 'karim', '1234', 'scout'),
 (3, 'zobbor', '1234', 'admin'),
 (4, 'monir', '123', 'general');
